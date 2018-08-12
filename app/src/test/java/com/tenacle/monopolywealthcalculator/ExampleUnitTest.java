@@ -1,4 +1,4 @@
-package com.example.trist.monopolywealthcalculator;
+package com.tenacle.monopolywealthcalculator;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.example.trist.monopolywealthcalculator;
+package com.tenacle.monopolywealthcalculator;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
