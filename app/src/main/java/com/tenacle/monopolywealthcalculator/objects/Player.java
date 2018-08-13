@@ -1,23 +1,15 @@
 package com.tenacle.monopolywealthcalculator.objects;
 
+import com.tenacle.monopolywealthcalculator.persistence.PropertyPersistence;
+
 import java.util.List;
 
 public class Player {
     private String name;
     private int cash;
-    private List<Player> ownedProperty;
+    private List<Property> ownedProperty;
 
-    Player(List<Player> ownedProperty) {
-        this.name = "default";
-        this.cash = 0;
-        this.ownedProperty = ownedProperty;
-    }
-    Player(String name, List<Player> ownedProperty) {
-        this.name = name;
-        this.cash = 0;
-        this.ownedProperty = ownedProperty;
-    }
-    Player(String name, int cash, List<Player> ownedProperty) {
+    public Player(String name, int cash, List<Property> ownedProperty) {
         this.name = name;
         this.cash = cash;
         this.ownedProperty = ownedProperty;
@@ -26,31 +18,43 @@ public class Player {
     public String getName() {
         return name;
     }
+
     public int getCash() {
         return cash;
     }
-    public List<Player> getOwnedProperty() {
+
+    public List<Property> getOwnedProperty() {
         return ownedProperty;
     }
 
     public void setName(String name) {
         this.name = name;
     }
+
     public void setCash(int cash) {
         this.cash = cash;
     }
-    public void setOwnedProperty(List<Player> ownedProperty) {
+
+    public void setOwnedProperty(List<Property> ownedProperty) {
         this.ownedProperty = ownedProperty;
     }
 
-    public boolean hasProperty(Player property) {
+    public void addProperty(Property property) {
+        this.ownedProperty.add(property);
+    }
+
+    public void delProperty(Property property) {
+        this.ownedProperty.remove(property);
+    }
+
+    public boolean containsProperty(Property property) {
         return ownedProperty.contains(property);
     }
 
     @Override
     public boolean equals(Object object) {
         boolean equal = false;
-        if (object instanceof Player) {
+        if( object instanceof Player ) {
             Player player = (Player) object;
             equal = this.name.equals(player.getName());
         }

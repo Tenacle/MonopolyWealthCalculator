@@ -19,31 +19,35 @@ public class PropertyPersistenceStub implements PropertyPersistence {
 
     @Override
     public Property getProperty(Property property) {
-        return this.getProperty(property.getName());
+        return this.propertyList.get(this.propertyList.indexOf(property));
     }
 
     @Override
     public Property getProperty(String name) {
-        return null;
+        return getProperty(new Property(name, -1, false));
     }
 
     @Override
     public boolean storeProperty(Property property) {
-        return false;
+        return this.propertyList.add(property);
     }
 
     @Override
     public boolean updateProperty(Property property) {
-        return false;
+        boolean updated = false;
+        if( this.propertyList.remove(property) ) {
+            updated = this.propertyList.add(property);
+        }
+        return updated;
     }
 
     @Override
     public boolean deleteProperty(Property property) {
-        return this.deleteProperty(property.getName());
+        return this.propertyList.remove(property);
     }
 
     @Override
     public boolean deleteProperty(String name) {
-        return false;
+        return deleteProperty(new Property(name, -1, false));
     }
 }
